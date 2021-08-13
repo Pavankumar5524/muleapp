@@ -29,6 +29,39 @@
 				<artifactId>mule-maven-plugin</artifactId>
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
+				<configuration>
+						<cloudHubDeployment>
+							<uri>https://anypoint.mulesoft.com</uri>
+							<username>Pavankumar275</username>
+							<password>Pavan@12321</password>
+							<environment>Sandbox</environment>
+							<muleVersion>4.3.0</muleVersion>
+							<workers>1</workers>
+							<workerType>Micro</workerType>
+							<applicationName>mulebuild</applicationName>
+							<objectStoreV2>true</objectStoreV2>
+						</cloudHubDeployment>
+				</configuration>
+			</plugin>
+			<plugin>
+						<groupId>org.sonatype.plugin</groupId>
+							<artifactId>nexus-staging-maven-plugin</artifactId>
+							<version>1.66</version>
+							<extensions>true</extensions>
+							<configuration>
+								<serverId>nexus</serverId>
+								<nexusurl>http://localhost:9081/nexus/</nexusurl>
+								<skipStaging>true</skipStaging>
+							</configuration>
+							<executions>
+								<execution>
+								<id>default-deploy</id>
+								<phase>deploy</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+								</execution>
+							</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -74,5 +107,12 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
+	<distributionManagement>
+			<snapshotRepository>
+				<id>mulerelease</id>
+				<name>mulerelease</name>
+				<url>http://localhost:9081/repository/mulerepo1/</url>
+			</snapshotRepository>
+	</distributionManagement>
 
 </project>
